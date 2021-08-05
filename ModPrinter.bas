@@ -6,6 +6,7 @@ Sub 印刷機設定フォーム起動()
     frmPrinter.Show
 
 End Sub
+
 Function 印刷機一覧取得()
 '20210719追加
     
@@ -27,6 +28,7 @@ Function 印刷機一覧取得()
     印刷機一覧取得 = PrinterList
     
 End Function
+
 Sub 印刷機設定(PrinterName$, Optional MessageIruNaraTrue = True)
 '20210719追加
     
@@ -58,9 +60,11 @@ Sub 印刷機設定(PrinterName$, Optional MessageIruNaraTrue = True)
     End If
     
 End Sub
+
 Function 設定済みプリンター名取得()
 '20210719
 
     設定済みプリンター名取得 = Application.ActivePrinter
     
 End Function
+

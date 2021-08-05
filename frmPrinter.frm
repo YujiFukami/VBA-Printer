@@ -90,6 +90,7 @@ Private Sub UserForm_Initialize()
     Call 現在設定印刷機表示
     
 End Sub
+
 Sub 現在設定印刷機表示()
 
     Dim NowPrinerName$
