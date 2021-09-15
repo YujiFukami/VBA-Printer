@@ -19,7 +19,7 @@ Function 印刷機一覧取得()
     ReDim PrinterList(1 To 1)
     
     K = 0
-    For Each myItem In myShell.Namespace(&H4).ITEMS
+    For Each myItem In myShell.Namespace(&H4).Items
         K = K + 1
         ReDim Preserve PrinterList(1 To K)
         PrinterList(K) = myItem.Name
@@ -29,7 +29,7 @@ Function 印刷機一覧取得()
     
 End Function
 
-Sub 印刷機設定(PrinterName$, Optional MessageIruNaraTrue = True)
+Sub 印刷機設定(PrinterName$, Optional MessageIrunaraTrue = True)
 '20210719追加
     
     Dim I% '数え上げ用(Integer型)
@@ -51,7 +51,7 @@ Sub 印刷機設定(PrinterName$, Optional MessageIruNaraTrue = True)
     On Error GoTo 0
     
     If SetteiKanryoNaraTrue Then
-        If MessageIruNaraTrue Then
+        If MessageIrunaraTrue Then
             MsgBox (SetteiName & "を印刷機に設定しました")
         End If
                 
