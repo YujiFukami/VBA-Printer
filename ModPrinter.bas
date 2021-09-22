@@ -1,14 +1,16 @@
 Attribute VB_Name = "ModPrinter"
 Option Explicit
-Sub 印刷機設定フォーム起動()
+
+Function GetSettingPrinter()
 '20210719
 
-    frmPrinter.Show
+    GetSettingPrinter = Application.ActivePrinter
+    
+End Function
 
-End Sub
-
-Function 印刷機一覧取得()
-'20210719追加
+Function GetPrinterList()
+'設定可能なプリンター一覧取得
+'20210719
     
     Dim myShell As Object
     Dim myItem As Object
@@ -25,18 +27,25 @@ Function 印刷機一覧取得()
         PrinterList(K) = myItem.Name
     Next
     
-    印刷機一覧取得 = PrinterList
+    GetPrinterList = PrinterList
     
 End Function
 
-Sub 印刷機設定(PrinterName$, Optional MessageIrunaraTrue = True)
-'20210719追加
-    
+Sub SetPrinter(PrinterName$, Optional MessageIrunaraTrue = True)
+'プリンター名から印刷対象のプリンター設定
+'20210719
+
+'引数
+'PrinterName         ・・・プリンター名（String型）
+'[MessageIrunaraTrue]・・・確認メッセージがいるかどうか。デフォルトはTrue
+                                                                         
+
     Dim I% '数え上げ用(Integer型)
     Dim SetteiName$
     Dim SetteiKanryoNaraTrue As Boolean
     SetteiKanryoNaraTrue = False
     
+    '「プリンター名 on Ne**」の「**」の番号を1つずつ試してうまくいくやつを探索
     On Error Resume Next
     For I = 1 To 99
         SetteiName = PrinterName & " on Ne" & Format(I, "00:")
@@ -50,21 +59,16 @@ Sub 印刷機設定(PrinterName$, Optional MessageIrunaraTrue = True)
     Next I
     On Error GoTo 0
     
+    '確認メッセージ
     If SetteiKanryoNaraTrue Then
+        '設定に成功した場合
         If MessageIrunaraTrue Then
             MsgBox (SetteiName & "を印刷機に設定しました")
         End If
                 
     Else
+        '設定に失敗した場合
         MsgBox (PrinterName & "は印刷設定できません")
     End If
     
 End Sub
-
-Function 設定済みプリンター名取得()
-'20210719
-
-    設定済みプリンター名取得 = Application.ActivePrinter
-    
-End Function
-
