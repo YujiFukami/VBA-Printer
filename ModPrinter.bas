@@ -1,6 +1,12 @@
 Attribute VB_Name = "ModPrinter"
 Option Explicit
 
+'GetSettingPrinter・・・元場所：FukamiAddins3.ModPrinter
+'GetPrinterList   ・・・元場所：FukamiAddins3.ModPrinter
+'SetPrinter       ・・・元場所：FukamiAddins3.ModPrinter
+
+
+
 Function GetSettingPrinter()
 '20210719
 
@@ -12,12 +18,11 @@ Function GetPrinterList()
 '設定可能なプリンター一覧取得
 '20210719
     
-    Dim myShell As Object
-    Dim myItem As Object
-    Set myShell = CreateObject("Shell.Application")
-    
+    Dim myShell    As Object
+    Dim myItem     As Object
     Dim PrinterList
-    Dim I%, J%, K%, M%, N% '数え上げ用(Integer型)
+    Dim K          As Integer
+    Set myShell = CreateObject("Shell.Application")
     ReDim PrinterList(1 To 1)
     
     K = 0
@@ -31,7 +36,7 @@ Function GetPrinterList()
     
 End Function
 
-Sub SetPrinter(PrinterName$, Optional MessageIrunaraTrue = True)
+Sub SetPrinter(PrinterName As String, Optional MessageIrunaraTrue = True)
 'プリンター名から印刷対象のプリンター設定
 '20210719
 
@@ -40,8 +45,8 @@ Sub SetPrinter(PrinterName$, Optional MessageIrunaraTrue = True)
 '[MessageIrunaraTrue]・・・確認メッセージがいるかどうか。デフォルトはTrue
                                                                          
 
-    Dim I% '数え上げ用(Integer型)
-    Dim SetteiName$
+    Dim I                    As Integer
+    Dim SetteiName           As String
     Dim SetteiKanryoNaraTrue As Boolean
     SetteiKanryoNaraTrue = False
     
@@ -72,3 +77,5 @@ Sub SetPrinter(PrinterName$, Optional MessageIrunaraTrue = True)
     End If
     
 End Sub
+
+
